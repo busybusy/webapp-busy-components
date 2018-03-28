@@ -126,8 +126,8 @@ export default Component.extend({
 			// show the new tab
 			tab.showTab();
 
-			// set the history hash
-			if (get(tab, 'id') !== get(this, 'currentTab.id') && get(tab, 'id') !== get(this, 'defaultTab')) {
+			// set the history hash, except pages with queries
+			if (get(tab, 'id') !== get(this, 'currentTab.id') && get(tab, 'id') !== get(this, 'defaultTab') && isEmpty(window.location.search)) {
 				set(this, 'hashName', get(tab, 'id'));
 				window.history.replaceState('', document.title, `${window.location.pathname}#tab-${get(tab, 'id')}`);
 			}
